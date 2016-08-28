@@ -83,16 +83,41 @@
 <body class="theme-invert">
 
 <div class="text-center" style="position: fixed; width: 100%;">
-    <table style="width: 100%">
-        <tr>
-            <td align="left">Hello {{ request.user.username }}</td>
-            <td align="right"><a href="{% url 'admin:logout' %}">Logout</a></td>
-        </tr>
-    </table>
-    <div class="label-custom">Player Information</div>
+
+    <div class="label-custom" style="padding-top: 30px;">Player Information</div>
     <div class="label-custom" id="player_status"> </div>
 </div>
 <div class="text-right" style="position: relative">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?prev');">
+                <i class="glyphicon glyphicon-step-backward"></i>
+            </button>
+            <button class="btn btn-success" onclick="call_api('{% url 'api:command' %}?play');">
+                <i class="glyphicon glyphicon-play"></i>
+            </button>
+            <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?pause');">
+                <i class="glyphicon glyphicon-pause"></i>
+            </button>
+            <button class="btn btn-danger" onclick="call_api('{% url 'api:command' %}?stop');">
+                <i class="glyphicon glyphicon-stop"></i>
+            </button>
+            <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?next');">
+                <i class="glyphicon glyphicon-step-forward"></i>
+            </button>
+            <button type="button" class="btn btn-info" onclick="call_api('{% url 'api:command' %}?first=volume&second=%2D5');">
+                <i class="glyphicon glyphicon-volume-down"></i>
+            </button>
+            <button type="button" class="btn btn-info" onclick="call_api('{% url 'api:command' %}?first=volume&second=%2B5');">
+                <i class="glyphicon glyphicon-volume-up"></i>
+            </button>
+            <button type="button" class="btn btn-default" onclick="call_api('{% url 'api:status' %}');">
+                <i class="glyphicon glyphicon-refresh"></i>
+                Player Info
+            </button>
+        </div>
+    </div>
+    Hello {{ request.user.username }}
     <a href="{% url 'admin:logout' %}">Logout</a>
 </div>
 
@@ -127,35 +152,7 @@
 					MP3 Player (Home) | Radio | YouTube Download & Play
 				</h5>
 
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 text-center">
-                        <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?prev');">
-                            <i class="glyphicon glyphicon-step-backward"></i>
-                        </button>
-                        <button class="btn btn-success" onclick="call_api('{% url 'api:command' %}?play');">
-                            <i class="glyphicon glyphicon-play"></i>
-                        </button>
-                        <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?pause');">
-                            <i class="glyphicon glyphicon-pause"></i>
-                        </button>
-                        <button class="btn btn-danger" onclick="call_api('{% url 'api:command' %}?stop');">
-                            <i class="glyphicon glyphicon-stop"></i>
-                        </button>
-                        <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?next');">
-                            <i class="glyphicon glyphicon-step-forward"></i>
-                        </button>
-                        <button type="button" class="btn btn-info" onclick="call_api('{% url 'api:command' %}?first=volume&second=%2D5');">
-                            <i class="glyphicon glyphicon-volume-down"></i>
-                        </button>
-                        <button type="button" class="btn btn-info" onclick="call_api('{% url 'api:command' %}?first=volume&second=%2B5');">
-                            <i class="glyphicon glyphicon-volume-up"></i>
-                        </button>
-                        <button type="button" class="btn btn-default" onclick="call_api('{% url 'api:status' %}');">
-                            <i class="glyphicon glyphicon-refresh"></i>
-                            Player Info
-                        </button>
-                    </div>
-                </div>
+
                 <br><br><br>
                 <button class="btn btn-primary" onclick="call_api('{% url 'api:playlist' %}', 'GET', 'playlist', 'True');">
                     Refresh playlist <i class="glyphicon glyphicon-refresh"></i>
