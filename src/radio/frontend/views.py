@@ -49,7 +49,7 @@ class HomeView(ListView):
         if form.is_valid():
             url = form.data['youtube_url']
 
-            out, err = self.system_do(
+            out, err, *junk = self.system_do(
                 "youtube-dl {} -x --audio-format mp3".format(url))
             filename = self.find_between(str(out), 'Destination:', '.mp3')
             try:
@@ -59,7 +59,7 @@ class HomeView(ListView):
                 pass
             print("filename: {}.mp3".format(filename))
             self.system_do(
-                ["mv", "{}.mp3".format(filename), "/mnt/music"], split=False
+                ["sudo", "mv", "{}.mp3".format(filename), "/mnt/music"], split=False
             )
             print('moved to /mnt/music')
             self.system_do("mpc clear")
@@ -69,4 +69,4 @@ class HomeView(ListView):
             self.system_do("mpc play")
             print('Playing')
 
-        return HttpResponseRedirect(reverse(reverse('home')))
+        return HttpResponseRedirect(reverse('home'))
