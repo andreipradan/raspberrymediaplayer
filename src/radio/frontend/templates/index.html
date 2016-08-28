@@ -84,10 +84,14 @@
 
 <div class="text-center" style="position: fixed; width: 100%;">
 
-    <div class="label-custom" style="padding-top: 30px;">Player Information</div>
+    <div class="label-custom" style="padding-top: 60px;">Player Information</div>
     <div class="label-custom" id="player_status"> </div>
 </div>
 <div class="text-right" style="position: relative">
+    <div class="row"> Hello
+        {{ request.user.username }}
+        <a href="{% url 'admin:logout' %}">Logout</a>
+    </div>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
             <button class="btn btn-default" onclick="call_api('{% url 'api:command' %}?prev');">
@@ -117,8 +121,6 @@
             </button>
         </div>
     </div>
-    Hello {{ request.user.username }}
-    <a href="{% url 'admin:logout' %}">Logout</a>
 </div>
 
 
