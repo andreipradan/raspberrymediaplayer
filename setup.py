@@ -11,7 +11,7 @@ from setuptools import setup
 
 
 install_requires = [
-    'Django==1.11',
+    'Django==1.11.28',
     'djangorestframework',
     'django-heartbeat==2.0.2',
     'django-bootstrap3',
